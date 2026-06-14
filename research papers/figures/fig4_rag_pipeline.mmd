@@ -1,0 +1,16 @@
+flowchart TD
+    PS(["User Problem Statement\ne.g. 'Design a food delivery app\nlike DoorDash for 1M users'"])
+
+    PS --> EM["Embed Query\ntext-embedding-ada-002\n→ 1536-dim dense vector"]
+
+    EM --> FS["FAISS Similarity Search\nIndexFlatL2 — exact L2 distance\nThreadPoolExecutor — async-safe\nCorpus: 25 curated arch patterns"]
+
+    FS --> P1["Pattern Doc 1\ne.g. Uber Ride-sharing\n~300 words · tagged"]
+    FS --> P2["Pattern Doc 2\ne.g. DoorDash Food Delivery\n~300 words · tagged"]
+    FS --> P3["Pattern Doc 3\ne.g. Airbnb Booking\n~300 words · tagged"]
+
+    P1 & P2 & P3 --> CC["Concatenate RAG Context\n--- separator · ≈1200 tokens total\nInjected under SIMILAR PATTERNS label"]
+
+    CC --> GP["GPT-4o Generation Prompt\nrequirements JSON\n+ clarifications dict\n+ RAG context string\nT=0.2 · ≈3500 tokens total"]
+
+    GP --> AJ(["Architecture JSON Output\nnodes: id · type · label · tech\nedges: source · target · animated\ntech_stack · summary"])

@@ -1,0 +1,26 @@
+flowchart TD
+    USER([User])
+
+    P1["P1: Extract Requirements<br/>GPT-4o · T=0"]
+    P2["P2: Retrieve Patterns<br/>FAISS similarity search"]
+    P3["P3: Generate Architecture<br/>GPT-4o · T=0.2"]
+    P4["P4: Render Diagram<br/>React Flow + dagre"]
+    P5["P5: Explain Component<br/>GPT-4o · T=0.3"]
+
+    D1[("D1: FAISS Index<br/>25 patterns")]
+    D2[("D2: MongoDB<br/>designs + users")]
+
+    USER -->|"problem statement"| P1
+    P1 -->|"structured reqs"| P2
+    P2 <-->|"top-k=3 patterns"| D1
+    P2 -->|"RAG context"| P3
+    P3 <-->|"persist arch JSON"| D2
+    P3 -->|"architecture"| P4
+    P4 -->|"diagram"| USER
+    USER -->|"click node"| P5
+    P5 <-->|"cache explanations"| D2
+    P5 -->|"rationale"| USER
+
+    style USER fill:#F3F4F6,stroke:#374151,stroke-width:2px
+    style D1 fill:#FEF3C7,stroke:#D97706
+    style D2 fill:#DBEAFE,stroke:#2563EB

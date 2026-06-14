@@ -1,0 +1,208 @@
+"use client";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Zap, BookOpen, BarChart3, Plus, CheckCircle2, Clock, Loader2, ArrowRight, Sparkles } from "lucide-react";
+import { listDesigns, upsertUser } from "@/lib/api";
+import type { DesignListItem } from "@/types";
+import { Spinner } from "@/components/ui/Spinner";
+
+const QUICK_LINKS = [
+  {
+    href: "/builder",
+    icon: Zap,
+    label: "New Design",
+    desc: "Generate a system architecture",
+    iconBg: "#4F46E5",
+    iconColor: "#fff",
+  },
+  {
+    href: "/learn",
+    icon: BookOpen,
+    label: "Learn Mode",
+    desc: "Study topics & take quizzes",
+    iconBg: "#059669",
+    iconColor: "#fff",
+  },
+  {
+    href: "/analytics",
+    icon: BarChart3,
+    label: "Analytics",
+    desc: "View your progress",
+    iconBg: "#0284C7",
+    iconColor: "#fff",
+  },
+];
+
+export default function DashboardPage() {
+  const { data: session } = useSession();
+  const [designs, setDesigns] = useState<DesignListItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!session?.user) return;
+    upsertUser({ name: session.user.name ?? "", email: session.user.email ?? "", image: session.user.image ?? undefined }).catch(() => {});
+    listDesigns().then(setDesigns).catch(() => {}).finally(() => setLoading(false));
+  }, [session]);
+
+  const firstName = session?.user?.name?.split(" ")[0] ?? "";
+
+  return (
+    <div className="max-w-4xl animate-fade-up">
+
+      {/* ── HEADER ─────────────────────────────────────────── */}
+      <div className="mb-10">
+        <p className="section-label mb-3">( Dashboard )</p>
+        <h1
+          style={{
+            fontFamily: "'Space Grotesk', system-ui",
+            fontSize: 42,
+            fontWeight: 900,
+            letterSpacing: "-0.03em",
+            lineHeight: 1.05,
+            color: "#0A0E2E",
+          }}
+        >
+          Welcome back, {firstName}.
+        </h1>
+        <p className="mt-2" style={{ fontSize: 15, color: "#6B7280" }}>
+          What are you building today?
+        </p>
+      </div>
+
+      {/* ── QUICK LINKS ─────────────────────────────────────── */}
+      <div className="grid grid-cols-3 gap-4 mb-12">
+        {QUICK_LINKS.map(({ href, icon: Icon, label, desc, iconBg, iconColor }) => (
+          <Link
+            key={href}
+            href={href}
+            className="group block rounded-2xl p-6 bg-white transition-all duration-200 hover:-translate-y-0.5"
+            style={{ border: "1px solid #E8E9F0" }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.borderColor = "#D1D5DB";
+              el.style.boxShadow = "0 8px 24px rgba(0,0,0,0.07)";
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.borderColor = "#E8E9F0";
+              el.style.boxShadow = "none";
+            }}
+          >
+            <div
+              className="w-11 h-11 rounded-full flex items-center justify-center mb-5"
+              style={{ background: iconBg }}
+            >
+              <Icon size={18} style={{ color: iconColor }} />
+            </div>
+            <div className="flex items-end justify-between gap-2">
+              <div>
+                <p style={{ fontSize: 14, fontWeight: 700, color: "#0A0E2E", letterSpacing: "-0.01em" }}>
+                  {label}
+                </p>
+                <p className="mt-0.5" style={{ fontSize: 12, color: "#9CA3AF" }}>{desc}</p>
+              </div>
+              <ArrowRight
+                size={15}
+                className="flex-shrink-0 mb-0.5 opacity-0 group-hover:opacity-100 transition-all duration-200 group-hover:translate-x-0.5"
+                style={{ color: "#9CA3AF" }}
+              />
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      {/* ── RECENT DESIGNS ──────────────────────────────────── */}
+      <div>
+        <div className="flex items-center justify-between mb-5">
+          <p className="section-label">( Recent Designs )</p>
+          <Link
+            href="/builder"
+            className="flex items-center gap-1.5 text-[12px] font-semibold transition-all duration-150"
+            style={{ color: "#4F46E5" }}
+          >
+            <Plus size={13} />
+            New design
+          </Link>
+        </div>
+
+        {loading ? (
+          <div className="flex justify-center py-16">
+            <Spinner className="w-5 h-5" />
+          </div>
+        ) : designs.length === 0 ? (
+          <div
+            className="rounded-2xl py-16 flex flex-col items-center text-center bg-white"
+            style={{ border: "1px solid #E8E9F0" }}
+          >
+            <div
+              className="w-12 h-12 rounded-full flex items-center justify-center mb-4"
+              style={{ background: "#4F46E5" }}
+            >
+              <Zap size={20} style={{ color: "#fff" }} />
+            </div>
+            <p style={{ fontSize: 16, fontWeight: 700, color: "#0A0E2E", marginBottom: 6 }}>
+              No designs yet
+            </p>
+            <p style={{ fontSize: 13, color: "#9CA3AF", marginBottom: 24 }}>
+              Generate your first system architecture
+            </p>
+            <Link href="/builder" className="btn-primary text-[13px] py-2">
+              <Sparkles size={13} />
+              Get started
+            </Link>
+          </div>
+        ) : (
+          <div className="rounded-2xl overflow-hidden bg-white" style={{ border: "1px solid #E8E9F0" }}>
+            {designs.map((d, i) => (
+              <Link
+                key={d.id}
+                href={`/builder/${d.id}`}
+                className="flex items-center gap-4 px-6 py-4 transition-all duration-150 group"
+                style={{ borderTop: i > 0 ? "1px solid #F3F4F6" : "none" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#FAFAFA"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
+              >
+                <div
+                  className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center"
+                  style={{ background: d.status === "complete" ? "#ECFDF5" : "#FFFBEB" }}
+                >
+                  {d.status === "complete" ? (
+                    <CheckCircle2 size={14} style={{ color: "#10B981" }} />
+                  ) : d.status === "awaiting_clarification" ? (
+                    <Loader2 size={14} style={{ color: "#F59E0B" }} />
+                  ) : (
+                    <Clock size={14} style={{ color: "#9CA3AF" }} />
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p
+                    className="truncate"
+                    style={{ fontSize: 13, fontWeight: 500, color: "#0A0E2E" }}
+                  >
+                    {d.problem_statement}
+                  </p>
+                  <p className="mt-0.5" style={{ fontSize: 11, color: "#D1D5DB" }}>
+                    {new Date(d.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 flex-shrink-0">
+                  <span
+                    className="badge text-[10px]"
+                    style={d.status === "complete"
+                      ? { background: "#ECFDF5", color: "#059669", border: "1px solid #A7F3D0" }
+                      : { background: "#FFFBEB", color: "#D97706", border: "1px solid #FDE68A" }
+                    }
+                  >
+                    {d.status.replace("_", " ")}
+                  </span>
+                  <ArrowRight size={13} className="opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: "#9CA3AF" }} />
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

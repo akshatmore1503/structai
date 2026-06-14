@@ -1,0 +1,20 @@
+graph TD
+    subgraph CLIENT["Browser — Next.js 14 App Router · Port 3000"]
+        direction LR
+        C1["Landing /"] --- C2["Dashboard"] --- C3["Builder /builder"] --- C4["Learn · Analytics"]
+    end
+
+    subgraph SERVER["FastAPI Backend · Port 8000 · Python 3.11+"]
+        direction LR
+        S1["Auth Routes"] --- S2["Design Routes"] --- S3["Learn Routes"] --- S4["Analytics · Admin"]
+        LG["LangGraph StateGraph — extract → clarify → retrieve → generate"]
+        EX["Explainability Engine · GPT-4o · T=0.3"]
+    end
+
+    subgraph DATA["Data Layer"]
+        direction LR
+        D1[("MongoDB Atlas\nusers · designs\nquiz_attempts")] --- D2[("FAISS Index\n25 arch patterns\nIndexFlatL2")] --- D3["OpenAI API\nGPT-4o · T=0–0.7\ntext-embedding-ada-002"]
+    end
+
+    CLIENT -->|"HTTP REST · Authorization: Bearer HS256 JWT"| SERVER
+    SERVER --> DATA

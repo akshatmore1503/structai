@@ -1,0 +1,38 @@
+erDiagram
+    USERS {
+        ObjectId _id PK
+        string name
+        string email
+        string image
+        string role
+        datetime created_at
+        int design_count
+        int quiz_count
+    }
+
+    DESIGNS {
+        ObjectId _id PK
+        string user_id FK
+        string problem_statement
+        object requirements
+        array clarifying_questions
+        object clarifications
+        object architecture
+        object explanations
+        string status
+        datetime created_at
+        datetime updated_at
+    }
+
+    QUIZ_ATTEMPTS {
+        ObjectId _id PK
+        string user_id FK
+        string quiz_id
+        string topic
+        float score
+        boolean passed
+        datetime completed_at
+    }
+
+    USERS ||--o{ DESIGNS : "owns (user_id)"
+    USERS ||--o{ QUIZ_ATTEMPTS : "submits (user_id)"

@@ -1,0 +1,16 @@
+flowchart TD
+    IN(["① Problem Statement\nFree-text user input"])
+
+    IN --> EX["node_extract\nGPT-4o · T=0\nOutputs: functional_requirements\nnon_functional_requirements\nscale_hints · ambiguities"]
+
+    EX --> CE{"should_clarify?\nambiguities ≠ ∅\nAND clarifications = None"}
+
+    CE -->|"YES — ambiguous input\nfirst pass only"| CL["node_clarify\nGPT-4o · T=0\nGenerates 2–4 targeted\nclarifying questions"]
+    CE -->|"NO — clear input\nor second pass"| RE["node_retrieve\nFAISS · top-k=3\ntext-embedding-ada-002\n25 arch patterns"]
+
+    CL --> WA(["② Await User Input\nPOST /designs/{id}/clarify\nstatus: awaiting_clarification"])
+    WA -->|"User answers submitted\nclarifications injected into state"| RE
+
+    RE --> GE["node_generate\nGPT-4o · T=0.2\nCombines: requirements\n+ clarifications + RAG context"]
+
+    GE --> OUT(["③ Architecture JSON\nnodes · edges · tech_stack · summary\nPersisted to MongoDB\nRendered in React Flow"])

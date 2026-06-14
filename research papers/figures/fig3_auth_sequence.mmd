@@ -1,0 +1,28 @@
+sequenceDiagram
+    participant B as Browser
+    participant N as NextAuth.js
+    participant G as Google OAuth 2.0
+    participant F as FastAPI Backend
+    participant M as MongoDB Atlas
+
+    B->>N: signIn("google", {callbackUrl: "/dashboard"})
+    N->>G: Redirect — client_id + scope + state
+    G-->>N: Authorization code callback
+    N->>G: POST /token — exchange code
+    G-->>N: access_token + user profile
+    Note over N: Custom encode callback
+    N->>N: SignJWT(profile) · alg=HS256 · exp=30d
+    N-->>B: Set-Cookie: next-auth.session-token (HttpOnly)
+
+    B->>F: POST /api/v1/auth/upsert-user (no auth required)
+    F->>M: findOne({email}) → insertOne if new user
+    M-->>F: user doc — role · design_count · quiz_count
+    F-->>B: 200 user profile
+
+    Note over B,M: Subsequent Authenticated Requests
+    B->>B: getSession() → session.accessToken (HS256 JWT string)
+    B->>F: Any API Request + Authorization: Bearer JWT
+    F->>F: decode_token() — python-jose HS256 verify
+    F->>M: Query with user_id ownership filter
+    M-->>F: Authorized resource data
+    F-->>B: 200 Response

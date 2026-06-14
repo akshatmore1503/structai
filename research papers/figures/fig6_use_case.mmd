@@ -1,0 +1,30 @@
+graph LR
+    subgraph SYSTEM["StructAI Platform"]
+        UC1(("Sign in with Google"))
+        UC2(("Submit problem statement"))
+        UC3(("Answer clarifying questions"))
+        UC4(("View architecture diagram"))
+        UC5(("Click node — explanation"))
+        UC6(("Take topic quiz"))
+        UC7(("Export PDF / Markdown"))
+        UC8(("View analytics"))
+        UC9(("View platform-wide stats"))
+        UC10(("Promote user role"))
+        UC11(("Rebuild FAISS index"))
+    end
+
+    U1["Student /<br/>Engineer"] --- UC1
+    U1 --- UC2
+    U1 --- UC3
+    U1 --- UC4
+    U1 --- UC5
+    U1 --- UC6
+    U1 --- UC7
+    U1 --- UC8
+
+    U2["Admin"] --- UC9
+    U2 --- UC10
+    U2 --- UC11
+
+    style U1 fill:#E0E7FF,stroke:#4F46E5,stroke-width:2px
+    style U2 fill:#FEE2E2,stroke:#DC2626,stroke-width:2px
