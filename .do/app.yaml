@@ -1,0 +1,37 @@
+name: structai
+services:
+- github:
+    branch: main
+    dir: backend
+    repo: akshatmore1503/structai
+  name: backend
+  build_command: pip install -r requirements.txt
+  run_command: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+  envs:
+  - key: PORT
+    scope: RUN_AND_BUILD_TIME
+    value: "8000"
+  http_port: 8000
+  instance_count: 1
+  instance_size_slug: basic-xs
+
+- github:
+    branch: main
+    dir: frontend
+    repo: akshatmore1503/structai
+  name: frontend
+  build_command: npm ci && npm run build
+  run_command: npm start
+  envs:
+  - key: NEXT_PUBLIC_API_URL
+    scope: BUILD_TIME
+    value: "http://backend:8000"
+  - key: NEXTAUTH_URL
+    scope: BUILD_TIME
+    value: "http://frontend:3000"
+  - key: PORT
+    scope: RUN_AND_BUILD_TIME
+    value: "3000"
+  http_port: 3000
+  instance_count: 1
+  instance_size_slug: basic-xs
