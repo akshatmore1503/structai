@@ -26,7 +26,7 @@ interface NodeCfg {
 
 const NODE_CONFIG: Record<string, NodeCfg> = {
   client:         { color: "#60a5fa", bg: "rgba(96,165,250,0.1)",  border: "rgba(96,165,250,0.25)",  dot: "#3b82f6", Icon: Monitor       },
-  api_gateway:    { color: "#adb5bd", bg: "rgba(167,139,250,0.1)", border: "rgba(167,139,250,0.25)", dot: "#8b5cf6", Icon: Gateway       },
+  api_gateway:    { color: "#a78bfa", bg: "rgba(167,139,250,0.1)", border: "rgba(167,139,250,0.25)", dot: "#8b5cf6", Icon: Gateway       },
   load_balancer:  { color: "#34d399", bg: "rgba(52,211,153,0.1)",  border: "rgba(52,211,153,0.25)",  dot: "#10b981", Icon: Scale         },
   web_server:     { color: "#2dd4bf", bg: "rgba(45,212,191,0.1)",  border: "rgba(45,212,191,0.25)",  dot: "#14b8a6", Icon: Server        },
   database:       { color: "#fb923c", bg: "rgba(251,146,60,0.1)",  border: "rgba(251,146,60,0.25)",  dot: "#f97316", Icon: Database      },
@@ -36,7 +36,7 @@ const NODE_CONFIG: Record<string, NodeCfg> = {
   cdn:            { color: "#38bdf8", bg: "rgba(56,189,248,0.1)",  border: "rgba(56,189,248,0.25)",  dot: "#0ea5e9", Icon: Globe         },
   object_storage: { color: "#94a3b8", bg: "rgba(148,163,184,0.1)", border: "rgba(148,163,184,0.25)", dot: "#64748b", Icon: HardDrive     },
   auth_service:   { color: "#f472b6", bg: "rgba(244,114,182,0.1)", border: "rgba(244,114,182,0.25)", dot: "#ec4899", Icon: Lock          },
-  monitoring:     { color: "#818cf8", bg: "rgba(129,140,248,0.1)", border: "rgba(129,140,248,0.25)", dot: "#495057", Icon: Activity      },
+  monitoring:     { color: "#818cf8", bg: "rgba(129,140,248,0.1)", border: "rgba(129,140,248,0.25)", dot: "#6366f1", Icon: Activity      },
   ml_service:     { color: "#c084fc", bg: "rgba(192,132,252,0.1)", border: "rgba(192,132,252,0.25)", dot: "#a855f7", Icon: Brain         },
 };
 

@@ -1,0 +1,159 @@
+The project is currently working perfectly and I am happy with all existing functionality, logic, workflows, APIs, database interactions, authentication, and business logic.
+
+My goal is ONLY to improve and modernize the UI/UX.
+
+I have created a file named **tuning.txt** in the project root directory.
+
+I am also attaching an image that visually represents the color palette contained in that file.
+
+## Your Task
+
+Before making any changes:
+
+1. Read the entire project structure.
+2. Locate and analyze the **tuning.txt** file.
+3. Extract the complete color palette from that file.
+4. Use the attached image only as a visual reference for understanding the palette style and intended aesthetic.
+5. Treat the colors defined in **tuning.txt** as the single source of truth.
+
+## Important Rules
+
+* Do NOT change any functionality.
+* Do NOT modify business logic.
+* Do NOT alter APIs.
+* Do NOT change database schemas.
+* Do NOT remove existing features.
+* Do NOT refactor working logic unless absolutely required for styling.
+* Focus only on UI/UX improvements.
+
+## UI Modernization Requirements
+
+Apply the new color palette consistently across the entire application.
+
+Update all relevant UI elements including:
+
+### Layout
+
+* Main backgrounds
+* Page backgrounds
+* Section backgrounds
+* Content containers
+
+### Navigation
+
+* Sidebar
+* Navbar
+* Menus
+* Navigation links
+* Active states
+* Hover states
+
+### Typography
+
+* Headings
+* Subheadings
+* Body text
+* Labels
+* Placeholder text
+* Muted text
+
+### Forms
+
+* Input fields
+* Textareas
+* Dropdowns
+* Select menus
+* Search bars
+* Checkboxes
+* Radio buttons
+
+### Components
+
+* Cards
+* Tables
+* Buttons
+* Modals
+* Dialogs
+* Tooltips
+* Alerts
+* Toasts
+* Badges
+* Tabs
+* Accordions
+
+### Interactive States
+
+* Hover
+* Focus
+* Active
+* Disabled
+* Selected
+
+### Data Visualization
+
+* Charts
+* Graphs
+* Analytics widgets
+* Dashboard cards
+* Progress indicators
+
+## Design Goals
+
+The final UI should feel:
+
+* Modern
+* Professional
+* Clean
+* Consistent
+* Enterprise-grade
+* Minimalistic
+* Premium
+
+Use the palette intelligently:
+
+* Lighter shades for backgrounds and surfaces.
+* Medium shades for containers and secondary elements.
+* Darker shades for emphasis, navigation, borders, and contrast.
+* Ensure excellent readability and accessibility.
+* Maintain proper color contrast ratios.
+
+## Implementation Requirements
+
+1. Find every styling source in the project:
+
+   * CSS
+   * SCSS
+   * Tailwind
+   * Theme files
+   * Styled Components
+   * Material UI themes
+   * Chakra themes
+   * Any custom design system
+
+2. Centralize colors wherever possible.
+
+3. Replace hardcoded colors with palette variables/tokens.
+
+4. Ensure consistency throughout the project.
+
+## Deliverables
+
+After finishing:
+
+### 1. UI Change Summary
+
+Provide a detailed list of all visual improvements made.
+
+### 2. Files Modified
+
+List every file that was updated.
+
+### 3. Color Mapping
+
+Show exactly how each color from tuning.txt is being used.
+
+### 4. Remaining Suggestions
+
+Recommend additional UI improvements that could further enhance the application's appearance without changing functionality.
+
+Work carefully and systematically. Analyze first, then implement. Do not begin changing files until you fully understand the project structure and styling architecture.

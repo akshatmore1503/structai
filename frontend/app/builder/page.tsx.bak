@@ -73,10 +73,10 @@ export default function BuilderPage() {
             <HelpCircle size={18} style={{ color: "#D97706" }} />
           </div>
           <div>
-            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#212529" }}>
+            <h2 style={{ fontSize: 16, fontWeight: 700, color: "#0A0E2E" }}>
               A few quick questions
             </h2>
-            <p style={{ fontSize: 12, color: "#adb5bd" }}>Help us tailor the architecture to your needs</p>
+            <p style={{ fontSize: 12, color: "#9CA3AF" }}>Help us tailor the architecture to your needs</p>
           </div>
         </div>
 
@@ -127,18 +127,18 @@ export default function BuilderPage() {
           <p className="section-label mb-3">( Design Builder )</p>
           <h1
             style={{
-              fontFamily: "'Ubuntu', system-ui",
+              fontFamily: "'Space Grotesk', system-ui",
               fontSize: 42,
               fontWeight: 900,
               letterSpacing: "-0.03em",
               lineHeight: 1.05,
-              color: "#212529",
+              color: "#0A0E2E",
               marginBottom: 12,
             }}
           >
             Describe your system.
           </h1>
-          <p style={{ fontSize: 15, color: "#6c757d", lineHeight: 1.65 }}>
+          <p style={{ fontSize: 15, color: "#6B7280", lineHeight: 1.65 }}>
             One sentence is enough. StructAI will ask clarifying questions if needed,
             then generate a production-grade architecture with interactive diagrams.
           </p>
@@ -147,12 +147,12 @@ export default function BuilderPage() {
         {/* ── COMPOSE AREA ─────────────────────────────────── */}
         <div
           className="rounded-2xl overflow-hidden mb-5 bg-white"
-          style={{ border: "1px solid #dee2e6", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}
+          style={{ border: "1px solid #E8E9F0", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px 18px", borderBottom: "1px solid #F3F4F6" }}>
             <div
               className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{ background: "#495057" }}
+              style={{ background: "#4F46E5" }}
             >
               <Wand2 size={13} color="#fff" />
             </div>
@@ -172,13 +172,13 @@ export default function BuilderPage() {
               padding: "18px 20px",
               fontSize: 15,
               lineHeight: 1.6,
-              color: "#212529",
+              color: "#0A0E2E",
               background: "#fff",
               border: "none",
               outline: "none",
               resize: "none",
-              fontFamily: "'Ubuntu', system-ui",
-              caretColor: "#495057",
+              fontFamily: "'Inter', system-ui",
+              caretColor: "#4F46E5",
             }}
           />
 
@@ -186,7 +186,7 @@ export default function BuilderPage() {
             className="flex items-center justify-between px-4 py-3"
             style={{ borderTop: "1px solid #F3F4F6" }}
           >
-            <p style={{ fontSize: 11, color: "#ced4da", fontWeight: 500 }}>
+            <p style={{ fontSize: 11, color: "#D1D5DB", fontWeight: 500 }}>
               ⌘ + Enter to generate
             </p>
             <button
@@ -227,16 +227,16 @@ export default function BuilderPage() {
                 key={ex}
                 onClick={() => setProblem(`Design a ${ex.toLowerCase()}`)}
                 className="text-[12px] font-medium px-3.5 py-1.5 rounded-full transition-all duration-150 bg-white"
-                style={{ color: "#6c757d", border: "1px solid #E5E7EB" }}
+                style={{ color: "#6B7280", border: "1px solid #E5E7EB" }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.color = "#495057";
+                  el.style.color = "#4F46E5";
                   el.style.background = "#EEF2FF";
                   el.style.borderColor = "#A5B4FC";
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget as HTMLElement;
-                  el.style.color = "#6c757d";
+                  el.style.color = "#6B7280";
                   el.style.background = "#fff";
                   el.style.borderColor = "#E5E7EB";
                 }}

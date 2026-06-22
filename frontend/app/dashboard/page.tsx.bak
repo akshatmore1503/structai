@@ -21,7 +21,7 @@ const QUICK_LINKS = [
     icon: BookOpen,
     label: "Learn Mode",
     desc: "Study topics & take quizzes",
-    iconBg: "#495057",
+    iconBg: "#059669",
     iconColor: "#fff",
   },
   {
@@ -55,7 +55,7 @@ export default function DashboardPage() {
         <p className="section-label mb-3">( Dashboard )</p>
         <h1
           style={{
-            fontFamily: "'Ubuntu', system-ui",
+            fontFamily: "'Space Grotesk', system-ui",
             fontSize: 42,
             fontWeight: 900,
             letterSpacing: "-0.03em",
@@ -165,14 +165,14 @@ export default function DashboardPage() {
               >
                 <div
                   className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center"
-                  style={{ background: d.status === "complete" ? "#495057" : "#ced4da" }}
+                  style={{ background: d.status === "complete" ? "#ECFDF5" : "#FFFBEB" }}
                 >
                   {d.status === "complete" ? (
-                    <CheckCircle2 size={14} style={{ color: "#fff" }} />
+                    <CheckCircle2 size={14} style={{ color: "#10B981" }} />
                   ) : d.status === "awaiting_clarification" ? (
-                    <Loader2 size={14} style={{ color: "#adb5bd" }} />
+                    <Loader2 size={14} style={{ color: "#F59E0B" }} />
                   ) : (
-                    <Clock size={14} style={{ color: "#fff" }} />
+                    <Clock size={14} style={{ color: "#9CA3AF" }} />
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
@@ -190,8 +190,8 @@ export default function DashboardPage() {
                   <span
                     className="badge text-[10px]"
                     style={d.status === "complete"
-                      ? { background: "#495057", color: "#fff", border: "1px solid #495057" }
-                      : { background: "#e9ecef", color: "#adb5bd", border: "1px solid #dee2e6" }
+                      ? { background: "#ECFDF5", color: "#059669", border: "1px solid #A7F3D0" }
+                      : { background: "#FFFBEB", color: "#D97706", border: "1px solid #FDE68A" }
                     }
                   >
                     {d.status.replace("_", " ")}

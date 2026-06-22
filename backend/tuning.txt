@@ -1,0 +1,38 @@
+Light Steel Color Palette
+=========================
+
+Color Name               Hex Code    Usage
+----------------------------------------------
+Light Steel 50           #f8f9fa     Main background, page backgrounds
+Light Steel 100          #e9ecef     Secondary backgrounds, disabled states
+Light Steel 200          #dee2e6     Borders, dividers, subtle separators
+Light Steel 300          #ced4da     Input borders, subtle backgrounds
+Light Steel 400          #adb5bd     Muted text, secondary text, icons
+Light Steel 500          #6c757d     Primary text, secondary elements
+Light Steel 600          #495057     Dark text, hover states, active states
+Light Steel 700          #343a40     Heading text, strong emphasis, dark backgrounds
+Light Steel 800          #212529     Darkest text, darkest backgrounds
+
+Color Mapping for Components:
+=============================
+Backgrounds:
+  - Main: #f8f9fa
+  - Secondary: #e9ecef
+  - Cards: #ffffff (white) with #dee2e6 borders
+  - Dark surfaces: #343a40, #212529
+
+Text:
+  - Primary: #212529
+  - Secondary: #6c757d
+  - Muted: #adb5bd
+  - On dark: #f8f9fa
+
+Accents:
+  - Focus/Hover: #495057
+  - Active: #343a40
+  - Disabled: #dee2e6
+
+Interactive:
+  - Buttons: #495057 (normal), #343a40 (hover)
+  - Inputs: border #ced4da, focus #495057
+  - Links: #495057, hover #343a40

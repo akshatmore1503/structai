@@ -1,9 +1,8 @@
 "use client";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Cpu, ArrowRight } from "lucide-react";
-import ArchitectureHero from "@/components/hero/ArchitectureHero";
 
 const FEATURES = [
   { num: "01", title: "Instant Architecture",   desc: "Paste a problem. Get a full system design in seconds — nodes, edges, and tech stack included." },
@@ -14,33 +13,16 @@ const FEATURES = [
 
 const TECH = ["GPT-4o", "FAISS", "LangGraph", "FastAPI", "Next.js 14", "MongoDB"];
 
-const TAGLINE = "like a senior architect.";
-
 export default function LandingPage() {
   const { data: session } = useSession();
   const router = useRouter();
-  const [displayedText, setDisplayedText] = useState("");
-
   useEffect(() => { if (session) router.push("/dashboard"); }, [session, router]);
-
-  useEffect(() => {
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index <= TAGLINE.length) {
-        setDisplayedText(TAGLINE.slice(0, index));
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 60);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <main
       style={{
         minHeight: "100vh",
-        background: "linear-gradient(10deg, #f8f9fa 0%, #e9ecef 0%, #dee2e6 0%, #f8f9fa 100%)",
+        background: "linear-gradient(160deg, #f8f9fa 0%, #e9ecef 40%, #dee2e6 70%, #f8f9fa 100%)",
         color: "#212529",
         overflowX: "hidden",
       }}
@@ -54,7 +36,6 @@ export default function LandingPage() {
           maxWidth: 1280,
           margin: "0 auto",
           padding: "24px 48px",
-          background: "transparent",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -70,10 +51,10 @@ export default function LandingPage() {
           </div>
           <span
             style={{
-              fontSize: 25, fontWeight: 800,
-              fontFamily: "'Montserrat', cursive",
+              fontSize: 17, fontWeight: 700,
+              fontFamily: "'Space Grotesk', system-ui",
               color: "#212529",
-              letterSpacing: "0.02em",
+              letterSpacing: "-0.02em",
             }}
           >
             StructAI
@@ -88,7 +69,6 @@ export default function LandingPage() {
             background: "#212529", color: "#fff", border: "none",
             letterSpacing: "-0.01em",
             transition: "opacity .15s",
-            fontFamily: "'Ubuntu', sans-serif",
           }}
           onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.opacity = "0.85")}
           onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.opacity = "1")}
@@ -104,91 +84,69 @@ export default function LandingPage() {
           margin: "0 auto",
           padding: "56px 48px 72px",
           position: "relative",
-          display: "flex",
-          gap: 80,
-          alignItems: "flex-start",
-          flexWrap: "wrap",
         }}
       >
-        {/* Left column */}
-        <div style={{ flex: 1, minWidth: 0 }}>
-          {/* Badge */}
-          <div
-            style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              padding: "6px 16px", borderRadius: 99, marginBottom: 52,
-              background: "rgba(73,80,87,0.08)",
-              border: "1px solid rgba(73,80,87,0.2)",
-              color: "#495057", fontSize: 11, fontWeight: 700,
-              letterSpacing: "0.1em", textTransform: "uppercase",
-              fontFamily: "'Ubuntu', sans-serif",
-            }}
-          >
-            ✦ &nbsp;GPT-4o · FAISS · LangGraph
-          </div>
+        {/* Badge */}
+        <div
+          style={{
+            display: "inline-flex", alignItems: "center", gap: 8,
+            padding: "6px 16px", borderRadius: 99, marginBottom: 52,
+            background: "rgba(73,80,87,0.08)",
+            border: "1px solid rgba(73,80,87,0.2)",
+            color: "#495057", fontSize: 11, fontWeight: 700,
+            letterSpacing: "0.1em", textTransform: "uppercase",
+          }}
+        >
+          ✦ &nbsp;GPT-4o · FAISS · LangGraph
+        </div>
 
         {/* Giant heading */}
         <h1
           style={{
-            lineHeight: 1.15,
+            fontFamily: "'Space Grotesk', system-ui",
+            fontWeight: 900,
+            lineHeight: 0.92,
+            letterSpacing: "-0.04em",
             margin: 0,
             marginBottom: 48,
             userSelect: "none",
           }}
         >
-          {/* Line 1 — Dancing Script font */}
+          {/* Line 1 — filled */}
           <span
             style={{
               display: "block",
-              fontFamily: "'Ubuntu', sans-serif",
-              fontWeight: 500,
-              letterSpacing: "-0.04em",
-              fontSize: "clamp(90px, 13vw, 160px)",
+              fontSize: "clamp(68px, 10.5vw, 148px)",
               color: "#212529",
             }}
           >
-            Design
+            DESIGN
           </span>
 
-          {/* Line 2 — Ubuntu font */}
+          {/* Line 2 — outlined stroke */}
           <span
             style={{
               display: "block",
-              fontFamily: "'Ubuntu', sans-serif",
-              fontWeight: 400,
-              letterSpacing: "-0.04em",
-              fontSize: "clamp(60px, 13vw, 160px)",
-              color: "#495057",
-              fontStyle: "normal",
-              marginTop: "-0.2em",
+              fontSize: "clamp(68px, 10.5vw, 148px)",
+              color: "transparent",
+              WebkitTextStroke: "2.5px #495057",
             }}
           >
-            Systems
+            SYSTEMS
           </span>
 
-          {/* Line 3 — elegant Qwigley tagline with typing effect */}
+          {/* Line 3 — smaller filled tagline */}
           <span
             style={{
-              fontFamily: "'Ubuntu', sans-serif",
-              fontWeight: 400,
-              letterSpacing: "0.00em",
-              fontSize: "clamp(20px, 4.2vw, 30px)",
+              display: "block",
+              fontSize: "clamp(28px, 4.2vw, 58px)",
               color: "#495057",
-              marginTop: "0.08em",
-              minHeight: "1.2em",
+              marginTop: "0.18em",
+              fontWeight: 700,
+              letterSpacing: "-0.03em",
             }}
           >
-            {displayedText}
-            <span
-              style={{
-                display: displayedText.length < TAGLINE.length ? "inline-block" : "none",
-                width: "2px",
-                height: "1em",
-                backgroundColor: "#495057",
-                marginLeft: "4px",
-                animation: "pulse 1s ease-in-out infinite",
-              }}
-            />
+            like a senior architect.
           </span>
         </h1>
 
@@ -210,7 +168,6 @@ export default function LandingPage() {
               color: "#6c757d",
               margin: 0,
               fontWeight: 400,
-              fontFamily: "'Ubuntu', sans-serif",
             }}
           >
             StructAI turns your problem statement into a complete, interactive
@@ -230,7 +187,6 @@ export default function LandingPage() {
                 boxShadow: "0 12px 40px rgba(33,37,41,0.2)",
                 letterSpacing: "-0.02em",
                 transition: "transform .15s, box-shadow .15s",
-                fontFamily: "'Ubuntu', sans-serif",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLButtonElement;
@@ -253,35 +209,12 @@ export default function LandingPage() {
               Continue with Google
               <ArrowRight size={15} />
             </button>
-            <p style={{ textAlign: "center", fontSize: 11, color: "#adb5bd", margin: 0, fontFamily: "'Ubuntu', sans-serif" }}>
+            <p style={{ textAlign: "center", fontSize: 11, color: "#adb5bd", margin: 0 }}>
               Free · No credit card
             </p>
           </div>
         </div>
-        </div>
 
-        {/* Right column — Architecture Visualization */}
-        <div
-          style={{
-            flex: 1,
-            minWidth: 0,
-            height: 600,
-          }}
-          className="hidden lg:block"
-        >
-          <ArchitectureHero />
-        </div>
-      </section>
-
-      {/* Section for features and divider */}
-      <section
-        style={{
-          maxWidth: 1280,
-          margin: "0 auto",
-          padding: "0 48px 72px",
-          position: "relative",
-        }}
-      >
         {/* Horizontal rule */}
         <div
           style={{
@@ -305,7 +238,6 @@ export default function LandingPage() {
                 style={{
                   fontSize: 10, fontWeight: 800, letterSpacing: "0.12em",
                   color: "#adb5bd", marginBottom: 14, textTransform: "uppercase",
-                  fontFamily: "'Ubuntu', sans-serif",
                 }}
               >
                 {num}
@@ -314,12 +246,12 @@ export default function LandingPage() {
                 style={{
                   fontSize: 15, fontWeight: 700, color: "#212529",
                   marginBottom: 8, letterSpacing: "-0.02em",
-                  fontFamily: "'Ubuntu', sans-serif",
+                  fontFamily: "'Space Grotesk', system-ui",
                 }}
               >
                 {title}
               </h3>
-              <p style={{ fontSize: 13, lineHeight: 1.65, color: "#6c757d", fontFamily: "'Ubuntu', sans-serif" }}>
+              <p style={{ fontSize: 13, lineHeight: 1.65, color: "#6c757d" }}>
                 {desc}
               </p>
             </div>
@@ -351,14 +283,14 @@ export default function LandingPage() {
           >
             <Cpu size={10} color="#fff" />
           </div>
-          <span style={{ fontSize: 13, fontWeight: 400, fontFamily: "'Qwigley', cursive", color: "#212529", letterSpacing: "0.01em" }}>
+          <span style={{ fontSize: 13, fontWeight: 600, color: "#212529", letterSpacing: "-0.01em" }}>
             StructAI
           </span>
         </div>
 
         <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
           {TECH.map((t) => (
-            <span key={t} style={{ fontSize: 11, color: "#adb5bd", fontWeight: 500, fontFamily: "'Ubuntu', sans-serif" }}>{t}</span>
+            <span key={t} style={{ fontSize: 11, color: "#adb5bd", fontWeight: 500 }}>{t}</span>
           ))}
         </div>
       </footer>

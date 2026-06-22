@@ -9,26 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50:  "#eef2ff",
-          100: "#e0e7ff",
-          300: "#a5b4fc",
-          400: "#818cf8",
-          500: "#6366f1",
-          600: "#4f46e5",
-          700: "#4338ca",
-          900: "#312e81",
-        },
-        navy: {
-          950: "#04050F",
-          900: "#06071A",
-          800: "#0C0E24",
-          700: "#12143A",
+        steel: {
+          50:  "#f8f9fa",
+          100: "#e9ecef",
+          200: "#dee2e6",
+          300: "#ced4da",
+          400: "#adb5bd",
+          500: "#6c757d",
+          600: "#495057",
+          700: "#343a40",
+          800: "#212529",
         },
       },
       fontFamily: {
-        display: ["Space Grotesk", "system-ui", "sans-serif"],
-        sans:    ["Inter",         "system-ui", "sans-serif"],
+        display: ["Ubuntu", "system-ui", "sans-serif"],
+        sans:    ["Ubuntu", "system-ui", "sans-serif"],
         mono:    ["JetBrains Mono","Fira Code",  "monospace"],
       },
       animation: {

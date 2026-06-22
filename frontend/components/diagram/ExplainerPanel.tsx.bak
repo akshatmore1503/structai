@@ -127,7 +127,7 @@ export function ExplainerPanel({ node, explanation, loading, onClose }: Props) {
                   className="w-10 h-10 rounded-[10px] flex items-center justify-center mb-3"
                   style={{ background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.2)" }}
                 >
-                  <Lightbulb size={17} style={{ color: "#495057" }} />
+                  <Lightbulb size={17} style={{ color: "#6366f1" }} />
                 </div>
                 <p className="text-[13px] font-medium text-white mb-1">Click a node</p>
                 <p className="text-[12px]" style={{ color: "#4E4E60" }}>
